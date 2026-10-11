@@ -51,3 +51,20 @@ jobs:
 
       - name: Run Python Query IR contract tests
         run: python3 query-ir/test_query_ir.py
+      - name: Enforce legal dossier export exclusion
+        shell: bash
+        run: |
+          node --input-type=module -e '
+            import fs from "node:fs";
+            const manifest = JSON.parse(fs.readFileSync("OSS_EXPORT_MANIFEST.json", "utf8"));
+            const required = "docs/release/LEGAL_REVIEW_DOSSIER.md";
+            if (!Array.isArray(manifest.exclude) || !manifest.exclude.includes(required)) {
+              console.error("OSS_EXPORT_MANIFEST.json must explicitly exclude " + required);
+              process.exit(1);
+            }
+            if (fs.existsSync(required)) {
+              console.error("Internal legal-review dossier must not exist in the public repository tree");
+              process.exit(1);
+            }
+            console.log("Public export manifest explicitly excludes the internal legal-review dossier.");
+          '

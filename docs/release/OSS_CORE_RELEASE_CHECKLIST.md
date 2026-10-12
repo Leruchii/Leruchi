@@ -5,6 +5,8 @@ Use this checklist for every public Leruchi Core release. A successful candidate
 ## Before building
 
 - Confirm the exact development source commit and the intended public destination: [Leruchii/Leruchi](https://github.com/Leruchii/Leruchi).
+- **Final owner policy:** `Leruchii/Leruchi-development` may remain public. Its visibility is not a release blocker; do not require it to become private or pause publication solely because it is public.
+- Review the actual candidate for secrets, private keys, confidential/internal-only files, customer data, and other sensitive content. A concrete content exposure is a separate finding; repository visibility alone is not a substitute for artifact review.
 - Confirm Node.js 24 is the only approved runtime.
 - Review `OSS_EXPORT_MANIFEST.json`; treat it as an allowlist, not a denylist.
 - Confirm that private control-plane material, internal engineering documents, secrets, environment files, and private release-gate tests are excluded.

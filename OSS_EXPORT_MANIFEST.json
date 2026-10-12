@@ -33,6 +33,8 @@
     "NORTH_STAR.md",
     "OSS_BOUNDARY.md",
     "docs/release/LEGAL_REVIEW_DOSSIER.md",
+    "docs/release/OSS_PUBLIC_SOURCE_RECONCILIATION.json",
+    "docs/release/OSS_PUBLIC_SOURCE_RECONCILIATION.md",
     "knowledge/**",
     "prompts/**",
     "scripts/assert-runtime-policy.mjs",

@@ -201,6 +201,28 @@ jobs:
           fi
 
           for file in "${shell_files[@]}"; do
+            echo "Checking Unix line endings: $file"
+            if LC_ALL=C grep -n 
+
+      - name: Install Gitleaks CLI
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          go install github.com/zricethezav/gitleaks/v8@v8.24.2
+          "$(go env GOPATH)/bin/gitleaks" version
+
+      - name: Scan repository history for exposed secrets
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$(go env GOPATH)/bin/gitleaks" git --redact --verbose --exit-code 1
+\\r' "$file"; then
+              echo "::error::CRLF line endings detected in '$file'. Add or preserve an LF rule in .gitattributes."
+              exit 1
+            fi
+
             echo "Checking shell syntax: $file"
             bash -n "$file"
           done

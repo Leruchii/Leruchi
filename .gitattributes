@@ -1,0 +1,5 @@
+# Keep scripts mounted into Linux containers executable with Unix line endings.
+*.sh text eol=lf
+*.sql text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

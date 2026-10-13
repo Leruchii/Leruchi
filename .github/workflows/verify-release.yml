@@ -201,6 +201,12 @@ jobs:
           fi
 
           for file in "${shell_files[@]}"; do
+            echo "Checking Unix line endings: $file"
+            if python3 -c 'import pathlib, sys; sys.exit(0 if bytes([13]) in pathlib.Path(sys.argv[1]).read_bytes() else 1)' "$file"; then
+              echo "::error::CRLF line endings detected in '$file'. Add or preserve an LF rule in .gitattributes."
+              exit 1
+            fi
+
             echo "Checking shell syntax: $file"
             bash -n "$file"
           done

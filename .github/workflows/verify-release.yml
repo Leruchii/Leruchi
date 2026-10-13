@@ -218,7 +218,7 @@ jobs:
         run: |
           set -euo pipefail
           "$(go env GOPATH)/bin/gitleaks" git --redact --verbose --exit-code 1
-\\r' "$file"; then
+\r' "$file"; then
               echo "::error::CRLF line endings detected in '$file'. Add or preserve an LF rule in .gitattributes."
               exit 1
             fi
